@@ -1,11 +1,11 @@
 package models
 
 import (
-    "testing"
-    "github.com/stretchr/testify/assert"
-    "server/test"
+	"github.com/stretchr/testify/assert"
+	"server/test"
+	"testing"
 )
 
 func TestUserModel(t *testing.T) {
-    assert.Equal(t, 1, 1)
+	assert.Equal(t, 1, 1)
 }

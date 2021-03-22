@@ -1,14 +1,14 @@
 package db
 
 import (
-    "server/models"
+	"server/models"
 )
 
 func Migrate() {
 	migrator := DB.Debug().Migrator()
 
 	migrator.AutoMigrate(
-        &models.User{},
-        &models.Wallet{},
+		&models.User{},
+		&models.Wallet{},
 	)
 }

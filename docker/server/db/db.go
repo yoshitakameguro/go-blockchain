@@ -37,12 +37,12 @@ func Init() {
 		fmt.Printf("We are connected to the %s database", os.Getenv("DB_DRIVER"))
 	}
 
-    Migrate()
+	Migrate()
 
-    // Create initial user data if needed
-    var count int64
-    DB.Table("users").Count(&count)
-    if count == 0 {
-        CreateInitialUserData()
-    }
+	// Create initial user data if needed
+	var count int64
+	DB.Table("users").Count(&count)
+	if count == 0 {
+		CreateInitialUserData()
+	}
 }

@@ -3,14 +3,14 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"testing"
 	"github.com/stretchr/testify/assert"
-    "server/test"
-    . "server/db"
+	. "server/db"
+	"server/test"
+	"testing"
 )
 
 func init() {
-    test.InitTest()
+	test.InitTest()
 	test.R.GET("/wallet/:user_id", GetWallet)
 }
 
@@ -19,7 +19,7 @@ func TestGetComment(t *testing.T) {
 	userID := fmt.Sprint(user.ID)
 	endpoint := "/wallet/" + userID
 
-    fmt.Println(endpoint)
+	fmt.Println(endpoint)
 
 	res, err := test.Request("GET", endpoint, nil)
 	if err != nil {
