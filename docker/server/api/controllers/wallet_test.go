@@ -16,7 +16,7 @@ func init() {
 	test.R.POST("/transaction", CreateTransaction)
 }
 
-func TestGetComment(t *testing.T) {
+func TestGetWallet(t *testing.T) {
 	user := FakeUserWithWallet()
 	userID := fmt.Sprint(user.ID)
 	endpoint := "/wallet/" + userID

@@ -1,7 +1,7 @@
 package blockchain
 
 import (
-	"bytes"
+	// "bytes"
 	"crypto/ecdsa"
 	"crypto/sha256"
 	"encoding/json"
