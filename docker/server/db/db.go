@@ -22,11 +22,10 @@ func Init() {
 	if os.Getenv("DB_SOCKET") != "" {
 		dbEntrypoint = fmt.Sprintf("unix(%s)", os.Getenv("DB_SOCKET"))
 	}
-	dbPassword := os.Getenv("DB_PASSWORD")
 	DNS := fmt.Sprintf(
 		"%s:%s@%s/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		os.Getenv("DB_USER"),
-		dbPassword,
+		os.Getenv("DB_PASSWORD"),
 		dbEntrypoint,
 		os.Getenv("DB_NAME"),
 	)
