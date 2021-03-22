@@ -1,25 +1,21 @@
 package test
 
 import (
-    "os"
     "fmt"
     "log"
-    "testing"
+	"io"
+	"net/http"
+	"net/http/httptest"
     "github.com/gin-gonic/gin"
     "gorm.io/gorm"
     "gorm.io/driver/mysql"
+    "server/models"
     . "server/db"
     _ "github.com/joho/godotenv/autoload"
 )
 
 
-var r *gin.Engine = gin.Default()
-
-func TestMain(m *testing.M) {
-    gin.SetMode(gin.TestMode)
-    initDB()
-    os.Exit(m.Run())
-}
+var R *gin.Engine = gin.Default()
 
 func initDB() {
     var err error
@@ -41,4 +37,21 @@ func initDB() {
     }
 
     Migrate()
+}
+
+func InitTest() {
+    gin.SetMode(gin.TestMode)
+    initDB()
+}
+
+func ClearDB() {
+    DB.Where("1=1").Delete(&models.User{})
+    DB.Where("1=1").Delete(&models.Wallet{})
+}
+
+func Request(requestMethod string, endpoint string, data io.Reader) (*httptest.ResponseRecorder, error) {
+    req, err := http.NewRequest(requestMethod, endpoint, data)
+    res := httptest.NewRecorder()
+    R.ServeHTTP(res, req)
+    return res, err
 }

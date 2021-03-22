@@ -1,7 +1,7 @@
 package router
 
 import (
-	// "server/api/controllers"
+	"server/api/controllers"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -24,6 +24,6 @@ func Init() *gin.Engine {
 func setUp(r *gin.Engine) {
 	v1 := r.Group("/api/v1")
 	{
-		v1.GET("/hello")
+        v1.GET("/wallet/:user_id", controllers.GetWallet)
 	}
 }
