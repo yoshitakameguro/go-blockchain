@@ -1,9 +1,9 @@
 package main
 
 import (
-    "fmt"
+    "server/db"
 )
 
 func main() {
-    fmt.Println("Hello, World!")
+    db.Init()
 }
