@@ -10,5 +10,6 @@ func Migrate(DB *gorm.DB) {
 
 	migrator.AutoMigrate(
         &models.User{},
+        &models.Wallet{},
 	)
 }
