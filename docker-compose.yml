@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0.23
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: go-blockchain
+    healthcheck:
+      test: "mysqladmin -p$$MYSQL_ROOT_PASSWORD ping"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    restart: always
+  mysql-test:
+    image: mysql:8.0.23
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: go-blockchain-test
+    healthcheck:
+      test: "mysqladmin -p$$MYSQL_ROOT_PASSWORD ping"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    restart: always
+  server:
+    build:
+      context: ./docker/server
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./docker/server:/app
+    restart: always
+volumes:
+  mysql-data:
