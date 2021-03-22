@@ -1,11 +1,10 @@
 package db
 
 import (
-	"gorm.io/gorm"
     "server/models"
 )
 
-func Migrate(DB *gorm.DB) {
+func Migrate() {
 	migrator := DB.Debug().Migrator()
 
 	migrator.AutoMigrate(
