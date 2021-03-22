@@ -39,4 +39,11 @@ func Init() {
 	}
 
     Migrate()
+
+    // Create initial user data if needed
+    var count int64
+    DB.Table("users").Count(&count)
+    if count == 0 {
+        CreateInitialUserData()
+    }
 }

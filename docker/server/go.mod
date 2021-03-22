@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	github.com/btcsuite/btcutil v1.0.2 // indirect
+	github.com/bxcodec/faker/v3 v3.6.0 // indirect
 	github.com/gin-contrib/cors v1.3.1 // indirect
 	github.com/gin-gonic/gin v1.6.3 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect

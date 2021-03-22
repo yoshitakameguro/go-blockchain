@@ -14,14 +14,14 @@ import (
 type Wallet struct {
     UserID        uint      `gorm:"primaryKey;autoIncrement:false;" json:"user_id"`
     BaseTimeField
-    PrivateKey    string `gorm:"size:256;not null;unique" json:"private_key"`
-    PublicKey     string  `gorm:"size:256;not null;unique" json:"public_key"`
-    BlockchainAddress  string    `gorm:"size:256;not null;unique" json:"blockchain_address"`
-    Amount float32 `gorm:"default:0.0" json"amount"`
+    PrivateKey    string `gorm:"size:256;not null;unique" json:"private_key" faker:'-'`
+    PublicKey     string  `gorm:"size:256;not null;unique" json:"public_key" faker:'-'`
+    BlockchainAddress  string    `gorm:"size:256;not null;unique" json:"blockchain_address" faker:'-'`
+    Amount float32 `gorm:"default:0" json"amount" faker:'-'`
 }
 
-func NewWallet() *Wallet {
-    w := &Wallet{}
+func NewWallet() Wallet {
+    w := Wallet{}
 
     privateKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
     if err != nil {

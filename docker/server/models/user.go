@@ -1,11 +1,7 @@
 package models
 
-import (
-    "gorm.io/gorm"
-)
-
 type User struct {
-    gorm.Model
+    BaseField
     Wallet Wallet
-    Email     string      `gorm:"size:256;not null;unique" json:"email"`
+    Email     string      `gorm:"size:256;not null;unique" json:"email" faker:"email"`
 }

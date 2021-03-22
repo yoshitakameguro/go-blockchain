@@ -5,9 +5,14 @@ import (
     "gorm.io/gorm"
 )
 
+type BaseField struct {
+    ID        uint           `gorm:"primaryKey" faker:"-"`
+    BaseTimeField
+}
+
 type BaseTimeField struct {
-    CreatedAt time.Time
-    UpdatedAt time.Time
-    DeletedAt gorm.DeletedAt `gorm:"index"`
+    CreatedAt time.Time       `faker:"-"`
+    UpdatedAt time.Time           `faker:"-"`
+    DeletedAt gorm.DeletedAt `gorm:"index" faker:"-"`
 }
 
